@@ -1,17 +1,56 @@
 import tomJerryNibbles.*
 
-describe "Grupo de test" {
 
-  test "test 1" {
-    assert.equals(100, 50+50)
+describe "Historia" {
+
+  test "Inicio, velocidad maxima de Tom y su energia" {
+    assert.that(tom.velocidadMaxima() == 10 and 
+                tom.energia() == 50)
   }
 
-  test "test 3" {
-    assert.that(true)
+  test "Comer a Jerry y aumentar velocidad maxima" {
+    tom.comer(jerry)
+    
+    assert.that(tom.velocidadMaxima() == 15.2 and 
+                tom.energia() == 102)
   }
 
-  test "test 4" {
-    assert.notThat(false)
+  test "Correr 24 metros y perder energia y velocidad maxima" {
+    tom.comer(jerry)
+    tom.correr(24)
+
+    assert.that(tom.velocidadMaxima() == 14 and 
+                tom.energia() == 90)
   }
 
+  test "Comer a Nibbles aumentar velocidad maxima" {
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    assert.that(tom.velocidadMaxima() == 18.7 and 
+                tom.energia() == 137)
+  }
+
+  test "Jerry cumple años y tom se lo come" {
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    jerry.cumplirUnAnio()
+    tom.comer(jerry)
+    assert.that(tom.velocidadMaxima() == 25.9 and 
+            tom.energia() == 209)
+    
+  }
+
+  test "Tom corre 38 metros su velocidad pasa a ser 24" {
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    jerry.cumplirUnAnio()
+    tom.comer(jerry)
+    tom.correr(38)
+
+    assert.that(tom.velocidadMaxima() == 24 and 
+                tom.energia() == 190)
+  }
 }
